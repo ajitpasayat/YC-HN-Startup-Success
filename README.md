@@ -1,2 +1,0 @@
-YC-HN-Startup-Success
-=====================
