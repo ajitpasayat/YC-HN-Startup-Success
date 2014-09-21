@@ -1,0 +1,15 @@
+Project Ideas:
+- Pipe data onto front-end using Flask/Python.
+- Four buttons representing different YC sessions (S14, W14, S13, W13) instead of input form.
+- Include logos in the front-end somehow.
+- Illuminate prediction and probabilty. Try bolding/coloring.
+- Contemplate adding a separate chart/visualization.
+- Add a sentiment analysis story: 2 positive reviews and 2 negative reviews examples.
+- Ditch the common tools in my slides.
+- Do a better job presenting the problem and solution straight away.
+- Do a precision-recall and obtain F1 score; area under curve plot.
+- Be clear: don't say, "operating" or "dead;" say, "likely to remain in operation" and "not likely to remain in operation."
+- List features.
+
+Quick things:
+- Be as done as possible by Monday morning.
