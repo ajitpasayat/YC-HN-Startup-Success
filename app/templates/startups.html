@@ -18,18 +18,17 @@
         <script type='text/javascript' src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
         <script type="text/javascript" src="https://www.google.com/jsapi"></script>
         <script type="text/javascript">
-
             google.load("visualization", "1", {packages:["table"]});
             google.load("visualization", "1", {packages:["corechart"]});
             google.setOnLoadCallback(function () { $('#predict').click(drawStuff);
                     });
-
+            
             function drawStuff() {
                 var companyname = document.getElementById('company').value
                 drawTable(companyname);
                 drawChart(companyname);
             }
-
+            
             function drawTable(companyname) {
                 if (companyname == 'Algolia') {
                     var data = new google.visualization.DataTable();
@@ -51,37 +50,55 @@
                             ['6sense', 'Dead', 0.4, {f: '$14,000,000'}, 'Y Combinator', 'Amanda Kahlow'],
                             ['Glio', 'Dead', 0.86, 0, 'Founders Club', 'João de Paula'],
                         ]);
-
+            
                     var table = new google.visualization.Table(document.getElementById('table_div'));
                     table.draw(data, {showRowNumber: true});
                 }
             }
-
+            
             function drawChart(companyname) {
-
+            
                 if (companyname == 'Algolia') {
-                    var data = google.visualization.arrayToDataTable([
-                            ['Company', 'Upvotes'],
-                            ['Algolia',  60],
-                            ['Minuum',  195],
-                            ['Backpack',  20],
-                            ['Bayes Impact', 85],
-                            ['Camperoo', 61],
-                            ['Kimono', 682],
-                            ['Aptible', 17],
-                            ['Lollipuff', 38],
-                            ['6sense', 20],
-                            ['Glio', 50 ]
+                    var dataTable = new google.visualization.DataTable();
+                    dataTable.addColumn('string', 'Country');
+                    // Use custom HTML content for the domain tooltip.
+                    dataTable.addColumn({'type': 'string', 'role': 'tooltip', 'p': {'html': true}});
+                    dataTable.addColumn('number', 'Gold');
+                    dataTable.addColumn('number', 'Silver');
+                    dataTable.addColumn('number', 'Bronze');
+
+                    dataTable.addRows([
+                        ['USA', createCustomHTMLContent('http://upload.wikimedia.org/wikipedia/commons/2/28/Flag_of_the_USA.svg', 46, 29, 29, 'http://www.google.com'), 46, 29, 29],
+                        ['China', createCustomHTMLContent('http://upload.wikimedia.org/wikipedia/commons/f/fa/Flag_of_the_People%27s_Republic_of_China.svg', 38, 27, 23, 'http://www.google.com'), 38, 27, 23],
+                        ['UK', createCustomHTMLContent('http://upload.wikimedia.org/wikipedia/commons/a/ae/Flag_of_the_United_Kingdom.svg', 29, 17, 19, 'http://www.google.com'), 29, 17, 19]
                     ]);
                     
                     var options = {
+                        // This line makes the entire category's tooltip active.
+                        focusTarget: 'category',
+                        // Use an HTML tooltip.
+                        tooltip: { isHtml: true, 
+                            trigger: 'selection' },
+                        legend: 'none',
                         title: 'Amount of Upvotes',
-                        series: {0: {color: 'orange'}},
-                        legend: {position: 'none'}
+                        series: {0: {color: 'orange'}}
                     };
-                    
+
+                                        
                     var chart = new google.visualization.ColumnChart(document.getElementById('chart_div'));
-                    chart.draw(data, options);
+
+                    chart.draw(dataTable, options);
+
+                    function createCustomHTMLContent(flagURL, totalGold, totalSilver, totalBronze, url) {
+                        return '<div style="padding:5px 5px 5px 5px;">' + '<img src="' + flagURL + '" style="width:75px;height:50px"><br/>' +
+                            '<table class="medals_layout">' + '<tr>' +
+                            '<td><img src="http://upload.wikimedia.org/wikipedia/commons/1/15/Gold_medal.svg" style="width:25px;height:25px"/></td>' +
+                            '<td><b>' + totalGold + '</b></td>' + '</tr>' + '<tr>' +
+                            '<td><img src="http://upload.wikimedia.org/wikipedia/commons/0/03/Silver_medal.svg" style="width:25px;height:25px"/></td>' +
+                            '<td><b>' + totalSilver + '</b></td>' + '</tr>' + '<tr>' +
+                            '<td><img src="http://upload.wikimedia.org/wikipedia/commons/5/52/Bronze_medal.svg" style="width:25px;height:25px"/></td>' +
+                            '<td><b>' + totalBronze + '</b></td>' + '</tr>' + '</table>' + '</div>' + '<a href=' + url + '>Google!</a>'
+                   }
                 }
             }
         </script>
@@ -121,8 +138,12 @@
                 </p>
                 <input style="width: 300px; height:40px; font-size:20px; margin:0 auto;" type="text" id="company" name="company" placeholder="Type in startup name">  
                 <button style="font-size:20px; height:40px; margin:0 auto;" id="predict">Predict!</button>
-                <p><div id="table_div"></div></p>
-                <p><div id="chart_div" style="width: 1100px; height: 500px; margin:0 auto;"></div></p>
+                <p>
+                <div id="table_div"></div>
+                </p>
+                <p>
+                <div id="chart_div" style="width: 1000px; height: 500px; margin:0 auto;"></div>
+                </p>
             </div>
             <br><br>
             <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>

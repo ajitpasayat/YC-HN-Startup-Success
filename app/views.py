@@ -4,7 +4,7 @@ import pymysql as mdb
 
 db = mdb.connect(user="root", host="localhost", db="startupsuccess_db", charset='utf8')
 
-@app.route('/startupdb')
+@app.route('/ycstartuppredictor')
 def startups_page_fancy():
     with db:
         cura = db.cursor()
