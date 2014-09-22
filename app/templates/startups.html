@@ -20,86 +20,100 @@
         <script type="text/javascript">
             google.load("visualization", "1", {packages:["table"]});
             google.load("visualization", "1", {packages:["corechart"]});
-            google.setOnLoadCallback(function () { $('#predict').click(drawStuff);
+            google.setOnLoadCallback(function () { $('#W14').click(drawStuff);
                     });
             
             function drawStuff() {
-                var companyname = document.getElementById('company').value
-                drawTable(companyname);
-                drawChart(companyname);
+                // var companyname = document.getElementById('company').value
+                drawTable();
+                drawChart();
             }
             
-            function drawTable(companyname) {
-                if (companyname == 'Algolia') {
-                    var data = new google.visualization.DataTable();
-                    data.addColumn('string', 'Company');
-                    data.addColumn('string', 'Predict');
-                    data.addColumn('number', 'Probability');
-                    data.addColumn('number', 'Total Funds');
-                    data.addColumn('string', 'Investor');
-                    data.addColumn('string', 'Founders');
-                    data.addRows([
-                            ['Algolia', 'Operating', 0.63, {f: '$2,800,000'}, 'Alven Capital', 'Julien Lemoine'],
-                            ['Minuum', 'Operating',  0.63, {f: '$500,000'}, 'BDC Venture Capital', 'Severin Smith'],
-                            ['Backpack', 'Operating', 0.70, {f: '$12,0000'}, 'Y Combinator', 'Fahim Aziz'],
-                            ['Bayes Impact', 'Operating', 0.60, {f: '$120,000'}, 'Y Combinator', 'Andrew Jiang'],
-                            ['Camperoo', 'Operating', 0.366, {f: '$289,000'}, 'Y Combinator', 'Not Listed'],
-                            ['Kimono', 'Dead', 0.13, 0, 'Y Combinator', 'Not Listed'],
-                            ['Aptible', 'Dead', 0.66, {f: '$120,000'}, 'Y Combinator', 'Chas Ballew'],
-                            ['Lollipuff', 'Dead', 0.466, 0, 'Y Combinator', 'David Mohs'],
-                            ['6sense', 'Dead', 0.4, {f: '$14,000,000'}, 'Y Combinator', 'Amanda Kahlow'],
-                            ['Glio', 'Dead', 0.86, 0, 'Founders Club', 'João de Paula'],
-                        ]);
-            
-                    var table = new google.visualization.Table(document.getElementById('table_div'));
-                    table.draw(data, {showRowNumber: true});
-                }
-            }
-            
-            function drawChart(companyname) {
-            
-                if (companyname == 'Algolia') {
-                    var dataTable = new google.visualization.DataTable();
-                    dataTable.addColumn('string', 'Country');
-                    // Use custom HTML content for the domain tooltip.
-                    dataTable.addColumn({'type': 'string', 'role': 'tooltip', 'p': {'html': true}});
-                    dataTable.addColumn('number', 'Gold');
-                    dataTable.addColumn('number', 'Silver');
-                    dataTable.addColumn('number', 'Bronze');
-
-                    dataTable.addRows([
-                        ['USA', createCustomHTMLContent('http://upload.wikimedia.org/wikipedia/commons/2/28/Flag_of_the_USA.svg', 46, 29, 29, 'http://www.google.com'), 46, 29, 29],
-                        ['China', createCustomHTMLContent('http://upload.wikimedia.org/wikipedia/commons/f/fa/Flag_of_the_People%27s_Republic_of_China.svg', 38, 27, 23, 'http://www.google.com'), 38, 27, 23],
-                        ['UK', createCustomHTMLContent('http://upload.wikimedia.org/wikipedia/commons/a/ae/Flag_of_the_United_Kingdom.svg', 29, 17, 19, 'http://www.google.com'), 29, 17, 19]
+            function drawTable() {
+                var data = new google.visualization.DataTable();
+                data.addColumn('string', 'Company');
+                data.addColumn('string', 'Prediction');
+                data.addColumn('number', 'Probability');
+                data.addColumn('number', 'Total Funds');
+                data.addColumn('string', 'Investors');
+                data.addColumn('string', 'Founders');
+                data.addRows([
+                        ['Algolia', 'Operating', 0.63, {f: '$2,800,000'}, 'Alven Capital', 'Julien Lemoine'],
+                        ['GetGoing', 'Not Operating', 0.5333, {f: '$2,500,000'}, 'Alireza Masrour, Lightbank, Yuri Milner, TA Venture, Data Collective, Plug & Play Ventures, Alexis Ohanian, Y Combinator','Alek Strygin, Alek Vernitsky, Eli Rosenberg, Ilya Gluhovsky'],
+                        ['Flynn', 'Not Operating', 0.5667, {f: '$120,000'}, 'Y Combinator', 'N/A'],
+                        ['CarWoo', 'Not Operating', 0.8667, {f: '$10,850,000'}, 'Comcast Ventures, Accelerator Ventures, InterWest Partners, Blumberg Capital, Comcast Ventures, Blumberg Capital, Jeff Fluhr, Comcast Ventures, FF Angel LLC, Felicis Ventures, Joshua Schachter, Blumberg Capital, Udi Manber, Founders Fund, Sam Altman, Raymond Tonsing, Raymond Tonsing, Accelerator Ventures, Paul Buchheit, ACE & Company, ACE & Company, Dillon McDonald, InterWest Partners, Raymond Tonsing, Y Combinator', 'Michael Young, Tommy McClung'],
+                        ['LocalOn', 'Not Operating', 0.5333, {f: '$175,000'}, 'Y Combinator', 'David Tolioupov, Shahbano Imran'],
+                        ['Goldbely', 'Operating', 0.9000, {f: '$3,000,000'}, '500 Startups, Funders Club, Dave McClure, Tim Draper, Intel Capital, ACE & Company, Y Combinator', 'Joe Ariel, Joel Gillman, Trevor Stow, Vanessa Torrivilla'],
+                        ['Zenefits', 'Operating', 0.8667, {f: '$83,600,000'}, 'David Rusenko, Maverick Capital, Charlie Cheever, Aaron Levie, Venrock, Venrock, Maverick Capital, Maveron, Y Combinator', 'Laks Srini, Parker Conrad'],
+                        ['BufferBox', 'Operating', 0.7333, {f: '$1,000,000'}, 'iNovia Capital, Y Combinator', 'Aditya Bali, Jay Shah, Mike McCauley']
                     ]);
-                    
-                    var options = {
-                        // This line makes the entire category's tooltip active.
-                        focusTarget: 'category',
-                        // Use an HTML tooltip.
-                        tooltip: { isHtml: true, 
-                            trigger: 'selection' },
-                        legend: 'none',
-                        title: 'Amount of Upvotes',
-                        series: {0: {color: 'orange'}}
-                    };
 
-                                        
-                    var chart = new google.visualization.ColumnChart(document.getElementById('chart_div'));
+                var formatter = new google.visualization.ColorFormat();
+                formatter.addRange('A', 'Np', 'red');
+                formatter.addRange('Nq', null, 'green');
+                formatter.format(data, 1); // Apply formatter to second column
 
-                    chart.draw(dataTable, options);
+                var table = new google.visualization.Table(document.getElementById('table_div'));
+                table.draw(data, {allowHtml: true, showRowNumber: true});
+            }
+            
+            function drawChart() {
+            
+                var dataTable = new google.visualization.DataTable();
+                dataTable.addColumn('string', 'Company');
+                // Use custom HTML content for the domain tooltip.
+                dataTable.addColumn({'type': 'string', 'role': 'tooltip', 'p': {'html': true}});
+                dataTable.addColumn('number', 'Upvotes');
+                
+                dataTable.addRows([
+                    ['Algolia', createCustomHTMLContent('http://a5.images.crunchbase.com/image/upload/c_pad,h_98,w_98/v1397183785/3110baf2d02da512dfee7fb0ed267d36.png', 
+                        'Why do you think consumer disks are better for a search engine?Everything is a balance between CPU/RAM/Disk. Having one of this resource that is far superior than the other would be a waste of resource...', 
+                        1, 'http://www.algolia.com'), 60],
+                    ['GetGoing', createCustomHTMLContent('http://a1.images.crunchbase.com/image/upload/c_pad,h_98,w_98/v1397751112/734b888abb3907906a9a1c8179435cf7.jpg',
+                        'I\'m certainly guilty of pimping a YC company by submitting this, but their approach to validated segmentation is really interesting.',
+                        0, 'http://www.getgoing.com'), 2],
+                    ['CarWoo', createCustomHTMLContent('http://a4.images.crunchbase.com/image/upload/c_pad,h_98,w_98/v1397195200/dc77ab5cd5dc6ec0601e66bd0e1ad7c6.png',
+                        'Charging the buyer gets the incentives right.  The whole story is that "CarWoo is working for you, not the dealer like those lead generation sites".',
+                        2, 'http://google.com'), 94],
+                    ['Zenefits', createCustomHTMLContent('http://a2.images.crunchbase.com/image/upload/c_pad,h_98,w_98/v1403751663/v2o3uom2vgbp6fb7duru.png',
+                        'We have been using Zenefits for a couple months now and I have to say I am incredibly impressed. They are lightning-fast on customer support and their onboarding for new employees is super simple...',
+                        3, 'http://www.zenefits.com'), 66],
+                    ['BufferBox', createCustomHTMLContent('http://a4.images.crunchbase.com/image/upload/c_pad,h_98,w_98/v1397189337/ee67eef7612a7c17c5bee3ecaac63ce0.jpg',
+                        'It\'s not a new idea. We\'ve had them running in my country (Denmark) for the last five years at least. They are everywhere.',
+                        0, 'http://www.bufferbox.com'), 282],
+                    ['Flynn', createCustomHTMLContent('http://a5.images.crunchbase.com/image/upload/c_pad,h_98,w_98/v1408517557/jjlzknejsfvtu9ijyjjp.png',
+                        '> It\'s entirely unclear how to use FlynnI\'ll go a step further: it\'s unclear _what_ Flynn is. I read the homepage and was still confused.',
+                        -1, 'https://flynn.io/'), 150],
+                    ['Goldbely', createCustomHTMLContent('http://a3.images.crunchbase.com/image/upload/c_pad,h_98,w_98/v1397180367/99717257bb2a360419f75b586503af93.png',
+                        'I think they\'re squarely aiming it as a high-end gift, which is smart. I\'d never pay $50 for a dozen links of Kreuz sausage, but I\'d flip out with joy if someone sent them to me unexpectedly.',
+                        1, 'http://www.goldbely.com'), 49],
+                    ['LocalOn', createCustomHTMLContent('http://a4.images.crunchbase.com/image/upload/c_pad,h_98,w_98/v1397186449/d5fa004ad5f1415fa67af34fe8c5d57f.png',
+                        'The place I used to work at had a similar idea, just an incredibly poor execution.  LocalOn has the right idea - local businesses are very skeptical of non-local companies especially startups...',
+                        0, 'http://www.localon.com'), 62]
+                ]);
+                
+                var options = {
+                    // This line makes the entire category's tooltip active.
+                    focusTarget: 'category',
+                    // Use an HTML tooltip.
+                    tooltip: { isHtml: true, 
+                        trigger: 'selection' },
+                    legend: 'none',
+                    title: 'Amount of Upvotes',
+                    series: {0: {color: 'orange'}}
+                };
 
-                    function createCustomHTMLContent(flagURL, totalGold, totalSilver, totalBronze, url) {
-                        return '<div style="padding:5px 5px 5px 5px;">' + '<img src="' + flagURL + '" style="width:75px;height:50px"><br/>' +
-                            '<table class="medals_layout">' + '<tr>' +
-                            '<td><img src="http://upload.wikimedia.org/wikipedia/commons/1/15/Gold_medal.svg" style="width:25px;height:25px"/></td>' +
-                            '<td><b>' + totalGold + '</b></td>' + '</tr>' + '<tr>' +
-                            '<td><img src="http://upload.wikimedia.org/wikipedia/commons/0/03/Silver_medal.svg" style="width:25px;height:25px"/></td>' +
-                            '<td><b>' + totalSilver + '</b></td>' + '</tr>' + '<tr>' +
-                            '<td><img src="http://upload.wikimedia.org/wikipedia/commons/5/52/Bronze_medal.svg" style="width:25px;height:25px"/></td>' +
-                            '<td><b>' + totalBronze + '</b></td>' + '</tr>' + '</table>' + '</div>' + '<a href=' + url + '>Google!</a>'
-                   }
-                }
+                                    
+                var chart = new google.visualization.BarChart(document.getElementById('chart_div'));
+
+                chart.draw(dataTable, options);
+
+                function createCustomHTMLContent(logo, comment, sentiment, url) {
+                    return '<div style="padding:5px 5px 5px 5px;">' + '<a href=' + url + '><img src="' + logo + '" style="width:100px;height:100px"></a><br/>' +
+                        '<table class="medals_layout">' + '<tr>' +
+                        '<td><b>Comment: </b>' + comment + '</td>' + '</tr>' + '<tr>' +
+                        '<td><b>Sentiment: </b>' + sentiment + '</td>' + '</tr>' + '</table>'
+               }
             }
         </script>
         <!-- CSS code from Bootply.com editor -->
@@ -136,8 +150,7 @@
                 <p class="lead">Predict YC W14 &amp; S14 Outcome<br>
                     <font size="2">Disclaimer: the below predictions are provided for entertainment purposes—but still based on real datasets. Past performance does not guarantee future success—nor failure. Your startup will do fine. :)</font>
                 </p>
-                <input style="width: 300px; height:40px; font-size:20px; margin:0 auto;" type="text" id="company" name="company" placeholder="Type in startup name">  
-                <button style="font-size:20px; height:40px; margin:0 auto;" id="predict">Predict!</button>
+                <button style="font-size:20px; height:40px; margin:0 auto;" id="W14">Predict W14</button>
                 <p>
                 <div id="table_div"></div>
                 </p>
