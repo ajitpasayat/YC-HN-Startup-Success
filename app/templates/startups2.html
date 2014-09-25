@@ -94,20 +94,48 @@
     <h1>YC Startup Predictor</h1>
     <p class="lead">Insight Data Science 2014C - Demo Project</p>
     <h3>Search by Startup</h3>    
-    <form class="form-inline well" action="/ycstartuppredictor" method="GET">
+    <form class="form-inline well" action="/ycstartuppredictor" method="POST">
         <div class="col-md-3"><input type="text" class="form-control" name="startupcompany" id="startupcompany" placeholder="YC Startup"></div>
         <button type="submit" class="btn btn-default">Predict!</button>
     </form>
-
-    <p>foo</p>
-
+    
     {% if search_results %}
-        <p>bar</p>
+    <table class="table table-condensed">
+            <thead>
+              <tr>
+                <th>Company</th>
+                <th>Prediction</th>
+                <th>Likelihood</th>
+                <th>Funds</th>
+                <th>Investors</th>
+                <th>Founders</th>
+                <th>Upvotes</th>
+                <th>Sentiment</th>
+              </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><a href={{search_results[0][8]}}>{{search_results[0][0]}}</a></td>
+                    {% if search_results[0][1] == 'Operating' %}
+                    <td class="operating success">{{search_results[0][1]}}</td>
+                    {% else %}
+                    <td class="notoperating danger">{{search_results[0][1]}}</td>
+                    {% endif %}
+                    <td>{{search_results[0][2]}}</td>
+                    <td id="funds">{{search_results[0][3]}}</td>
+                    <td>{{search_results[0][4]}}</td>
+                    <td>{{search_results[0][5]}}</td>
+                    <td>{{search_results[0][7]}}</td>
+                    <td>{{search_results[0][8]}}</td>
+                </tr>
+              </tr>
+            </tbody>
+    </table>
     {% endif %}
 
     <h3>View by Y Combinator Session</h3>    
     <ul class="nav nav-tabs">
-      <li><a href="#S14" data-toggle="tab">S14</a></li>
+      <li class="active"><a href="#S14" data-toggle="tab">S14</a></li>
       <li><a href="#W14" data-toggle="tab">W14</a></li>
       <li><a href="#S13" data-toggle="tab">S13</a></li>
       <li><a href="#W13" data-toggle="tab">W13</a></li>
@@ -126,7 +154,7 @@
 
     <div class="tabbable">
       <div class="tab-content">
-        <div class="tab-pane" id="S14">
+        <div class="tab-pane active" id="S14">
           <table id="s14table" class="table table-condensed tablesorter">
             <thead>
               <tr>
