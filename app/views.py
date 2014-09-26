@@ -113,7 +113,7 @@ def startups_page_fancy():
             totalfunds=result[3], investors=result[4], founders=result[5], 
             upvotes=result[6], sentiment=result[7], url=result[8]))
 
-    return render_template('startups2.html', session_s14=session_s14, session_w14=session_w14,
+    return render_template('startups.html', session_s14=session_s14, session_w14=session_w14,
             session_s13=session_s13, session_w13=session_w13,
             session_s12=session_s12, session_w12=session_w12,
             session_s11=session_s11, session_w11=session_w11,
@@ -122,7 +122,6 @@ def startups_page_fancy():
 @app.route('/ycstartuppredictor', methods=['POST'])
 def my_form_post():
     startup = request.form['startupcompany']
-    print startup
     with db:
         cur_startup = db.cursor()
         cur_startup.execute("SELECT company, prediction, probability, totalfunds, investors, founders, titlepoints, sentiment, website FROM fullset WHERE company = '" + startup + "';")
@@ -233,7 +232,7 @@ def my_form_post():
             totalfunds=result[3], investors=result[4], founders=result[5], 
             upvotes=result[6], sentiment=result[7], url=result[8]))
 
-    return render_template('startups2.html', search_results=search_results, 
+    return render_template('startups.html', search_results=search_results, 
             session_s14=session_s14, session_w14=session_w14,
             session_s13=session_s13, session_w13=session_w13,
             session_s12=session_s12, session_w12=session_w12,
