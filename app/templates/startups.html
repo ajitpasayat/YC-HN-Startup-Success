@@ -84,18 +84,18 @@
   <div class="container">
     <ul class="breadcrumb">
       <li><a href="http://andrewzaldivar.com">Home</a></li>
-
       <li class="active"><a href="http://andrewzaldivar.com/ycpredictor">YC Predictor</a></li>
-
       <li><a href="http://andrewzaldivar.com/ycresults">Highlights and Analytics</a></li>
-
       <li><a href="http://github.com/andrewzaldivar">Github</a></li>
     </ul>
 
-    <h1>YC Predictor</h1>
+    <div class="page-header">
+        <h1>YC Predictor</h1>
+    </div>
+    
     <p class="lead">Insight Data Science 2014C - Demo Project</p>
-    <p>YC Predictor combines datasets from Silk.co (CrunchBase, AngelList, Seed.db) with user sentiment and upvotes from Hacker News API (Algolia) to predict (with a likelihood estimate) whether or not a Y Combinator participant will remain in operation given their present status.
-    <p>Disclaimer: the predictions below are provided for entertainment purposes—but still based on real datasets. Past performance does not guarantee future success nor failure. Your startup will do fine. :)</p>
+    <p><i>YC Predictor</i> combines datasets from <a href='https://y-combinator.silk.co/'>Silk.co</a> (CrunchBase, AngelList, Seed.db) with user sentiment and upvotes from <a href='https://hn.algolia.com/api'>Algolia's Hacker News API</a> to forecast the likelihood of a Y Combinator participant remaining in operation.
+    <p>Disclaimer: though based on real datasets, the predictions below should be taken with a grain of salt. Past performance does not guarantee future success nor failure. If nothing else, this project served as a fun exercise for me. - AZ</p>
     <h3>Search by Startup</h3>    
     <form class="form-inline well" action="/ycstartuppredictor" method="POST">
         <div class="col-md-3"><input type="text" class="form-control" name="startupcompany" id="startupcompany" placeholder="YC Startup"></div>
