@@ -111,9 +111,10 @@
                 <thead>
                   <tr>
                     <th>Company</th>
-                    <th>Prediction</th>
-                    <th>Likelihood</th>
+                    <th>Status</th>
+                    <th>Forecast</th>
                     <th>Funds</th>
+                    <th>Market</th>
                     <th>Investors</th>
                     <th>Founders</th>
                     <th>Upvotes</th>
@@ -122,18 +123,21 @@
                 </thead>
                 <tbody>
                     <tr>
-                        <td><a href={{search_results[0][8]}}>{{search_results[0][0]}}</a></td>
+                        <td><a href={{search_results[0][8]}}>
+                                {{search_results[0][0]}}</a></td>
+                        <td>{{search_results[0][12]}}</td>
                         {% if search_results[0][1] == 'Operating' %}
-                        <td class="operating success">{{search_results[0][1]}}</td>
+                        <td class="operating success">Likely to Remain Operating (Probability: {{search_results[0][2]}})</td>
                         {% else %}
-                        <td class="notoperating danger">{{search_results[0][1]}}</td>
+                        <td class="notoperating danger">Not Likely to Remain Operating (Probability: {{search_results[0][2]}})</td>
                         {% endif %}
-                        <td>{{search_results[0][2]}}</td>
-                        <td id="funds">{{search_results[0][3]}}</td>
+                        <td id="funds">{{'${:,.2f}'.format(search_results[0][3])}}</td>
+                        <td>{{search_results[0][9]}}</td>
                         <td>{{search_results[0][4]}}</td>
                         <td>{{search_results[0][5]}}</td>
                         <td>{{search_results[0][6]}}</td>
-                        <td>{{search_results[0][7]}}</td>
+                        <td><a href={{search_results[0][10]}}>
+                                {{search_results[0][7]}}</a></td>
                     </tr>
                   </tr>
                 </tbody>
@@ -159,8 +163,8 @@
       <li><a href="#S09" data-toggle="tab">S09</a></li>
       <li><a href="#W09" data-toggle="tab">W09</a></li>
       <li><a href="#S08" data-toggle="tab">S08</a></li>
-      <li><a href="#W08" data-toggle="tab">W08</a></li>
-      <li><a href="#0607" data-toggle="tab">06-07</a></li>
+      <li><a href="#W08" data-toggle="tab">W08</a></li> 
+      <li><a href="#050607" data-toggle="tab">05-06-07</a></li>
     </ul><!-- /nav-tabs -->
 
     <div class="tabbable">
@@ -170,9 +174,10 @@
             <thead>
               <tr>
                 <th>Company</th>
-                <th>Prediction</th>
-                <th>Likelihood</th>
+                <th>Status</th>
+                <th>Forecast</th>
                 <th>Funds</th>
+                <th>Market</th>
                 <th>Investors</th>
                 <th>Founders</th>
                 <th>Upvotes</th>
@@ -182,22 +187,21 @@
             <tbody>
                 {% for company in session_s14%}
                 <tr>
-                    <td><a href={{company['url']}}>{{company['company']}}</a></td>
+                    <td><a href={{company['url']}}>
+                            {{company['company']}}</a></td>
+                    <td>{{company['status']}}</td>
                     {% if company['prediction'] == 'Operating' %}
-                    <td class="operating success">{{company['prediction']}}</td>
+                    <td class="operating success">Likely to Remain Operating (Probability: {{company['likelihood']}})</td>
                     {% else %}
-                    <td class="notoperating danger">{{company['prediction']}}</td>
+                    <td class="notoperating danger">Not Likely to Remain Operating (Probability: {{1-company['likelihood']}})</td>
                     {% endif %}
-                    {% if company['prediction'] == 'Not Operating' %}
-                    <td>{{(1-company['likelihood'])}}</td>
-                    {% else %}
-                    <td>{{company['likelihood']}}</td>
-                    {% endif %}
-                    <td id="funds">{{company['totalfunds']}}</td>
+                    <td>{{company['totalfunds']}}</td>
+                    <td>{{company['market']}}</td>
                     <td>{{company['investors']}}</td>
                     <td>{{company['founders']}}</td>
                     <td>{{company['upvotes']}}</td>
-                    <td>{{company['sentiment']}}</td>
+                    <td><a href={{company['commentsurl']}}>
+                            {{company['sentiment']}}</a></td>
                 </tr>
                 {% endfor %}
             </tbody>
@@ -206,12 +210,13 @@
 
         <div class="tab-pane" id="W14">
           <table id="w14table" class="table table-condensed tablesorter">
-            <thead>
+           <thead>
               <tr>
                 <th>Company</th>
-                <th>Prediction</th>
-                <th>Likelihood</th>
+                <th>Status</th>
+                <th>Forecast</th>
                 <th>Funds</th>
+                <th>Market</th>
                 <th>Investors</th>
                 <th>Founders</th>
                 <th>Upvotes</th>
@@ -221,36 +226,37 @@
             <tbody>
                 {% for company in session_w14%}
                 <tr>
-                    <td><a href={{company['url']}}>{{company['company']}}</a></td>
+                    <td><a href={{company['url']}}>
+                            {{company['company']}}</a></td>
+                    <td>{{company['status']}}</td>
                     {% if company['prediction'] == 'Operating' %}
-                    <td class="operating success">{{company['prediction']}}</td>
+                    <td class="operating success">Likely to Remain Operating (Probability: {{company['likelihood']}})</td>
                     {% else %}
-                    <td class="notoperating danger">{{company['prediction']}}</td>
+                    <td class="notoperating danger">Not Likely to Remain Operating (Probability: {{1-company['likelihood']}})</td>
                     {% endif %}
-                    {% if company['prediction'] == 'Not Operating' %}
-                    <td>{{(1-company['likelihood'])}}</td>
-                    {% else %}
-                    <td>{{company['likelihood']}}</td>
-                    {% endif %}
-                    <td id="funds">{{company['totalfunds']}}</td>
+                    <td>{{company['totalfunds']}}</td>
+                    <td>{{company['market']}}</td>
                     <td>{{company['investors']}}</td>
                     <td>{{company['founders']}}</td>
                     <td>{{company['upvotes']}}</td>
-                    <td>{{company['sentiment']}}</td>
+                    <td><a href={{company['commentsurl']}}>
+                            {{company['sentiment']}}</a></td>
                 </tr>
                 {% endfor %}
-              </tr>
             </tbody>
           </table>
         </div>
+
+
         <div class="tab-pane" id="S13">
           <table id="s13table" class="table table-condensed tablesorter">
             <thead>
               <tr>
                 <th>Company</th>
-                <th>Prediction</th>
-                <th>Likelihood</th>
+                <th>Status</th>
+                <th>Forecast</th>
                 <th>Funds</th>
+                <th>Market</th>
                 <th>Investors</th>
                 <th>Founders</th>
                 <th>Upvotes</th>
@@ -260,36 +266,35 @@
             <tbody>
                 {% for company in session_s13%}
                 <tr>
-                    <td><a href={{company['url']}}>{{company['company']}}</a></td>
+                    <td><a href={{company['url']}}>
+                            {{company['company']}}</a></td>
+                    <td>{{company['status']}}</td>
                     {% if company['prediction'] == 'Operating' %}
-                    <td class="operating success">{{company['prediction']}}</td>
+                    <td class="operating success">Likely to Remain Operating (Probability: {{company['likelihood']}})</td>
                     {% else %}
-                    <td class="notoperating danger">{{company['prediction']}}</td>
+                    <td class="notoperating danger">Not Likely to Remain Operating (Probability: {{1-company['likelihood']}})</td>
                     {% endif %}
-                    {% if company['prediction'] == 'Not Operating' %}
-                    <td>{{(1-company['likelihood'])}}</td>
-                    {% else %}
-                    <td>{{company['likelihood']}}</td>
-                    {% endif %}
-                    <td id="funds">{{company['totalfunds']}}</td>
+                    <td>{{company['totalfunds']}}</td>
+                    <td>{{company['market']}}</td>
                     <td>{{company['investors']}}</td>
                     <td>{{company['founders']}}</td>
                     <td>{{company['upvotes']}}</td>
-                    <td>{{company['sentiment']}}</td>
+                    <td><a href={{company['commentsurl']}}>
+                            {{company['sentiment']}}</a></td>
                 </tr>
                 {% endfor %}
-              </tr>
             </tbody>
-          </table>
+        </table>
         </div>
         <div class="tab-pane" id="W13">
           <table id="w13table" class="table table-condensed tablesorter">
             <thead>
               <tr>
                 <th>Company</th>
-                <th>Prediction</th>
-                <th>Likelihood</th>
+                <th>Status</th>
+                <th>Forecast</th>
                 <th>Funds</th>
+                <th>Market</th>
                 <th>Investors</th>
                 <th>Founders</th>
                 <th>Upvotes</th>
@@ -299,25 +304,23 @@
             <tbody>
                 {% for company in session_w13%}
                 <tr>
-                    <td><a href={{company['url']}}>{{company['company']}}</a></td>
+                    <td><a href={{company['url']}}>
+                            {{company['company']}}</a></td>
+                    <td>{{company['status']}}</td>
                     {% if company['prediction'] == 'Operating' %}
-                    <td class="operating success">{{company['prediction']}}</td>
+                    <td class="operating success">Likely to Remain Operating (Probability: {{company['likelihood']}})</td>
                     {% else %}
-                    <td class="notoperating danger">{{company['prediction']}}</td>
+                    <td class="notoperating danger">Not Likely to Remain Operating (Probability: {{1-company['likelihood']}})</td>
                     {% endif %}
-                    {% if company['prediction'] == 'Not Operating' %}
-                    <td>{{(1-company['likelihood'])}}</td>
-                    {% else %}
-                    <td>{{company['likelihood']}}</td>
-                    {% endif %}
-                    <td id="funds">{{company['totalfunds']}}</td>
+                    <td>{{company['totalfunds']}}</td>
+                    <td>{{company['market']}}</td>
                     <td>{{company['investors']}}</td>
                     <td>{{company['founders']}}</td>
                     <td>{{company['upvotes']}}</td>
-                    <td>{{company['sentiment']}}</td>
+                    <td><a href={{company['commentsurl']}}>
+                            {{company['sentiment']}}</a></td>
                 </tr>
                 {% endfor %}
-              </tr>
             </tbody>
           </table>
         </div>
@@ -326,9 +329,10 @@
             <thead>
               <tr>
                 <th>Company</th>
-                <th>Prediction</th>
-                <th>Likelihood</th>
+                <th>Status</th>
+                <th>Forecast</th>
                 <th>Funds</th>
+                <th>Market</th>
                 <th>Investors</th>
                 <th>Founders</th>
                 <th>Upvotes</th>
@@ -338,25 +342,23 @@
             <tbody>
                 {% for company in session_s12%}
                 <tr>
-                    <td><a href={{company['url']}}>{{company['company']}}</a></td>
+                    <td><a href={{company['url']}}>
+                            {{company['company']}}</a></td>
+                    <td>{{company['status']}}</td>
                     {% if company['prediction'] == 'Operating' %}
-                    <td class="operating success">{{company['prediction']}}</td>
+                    <td class="operating success">Likely to Remain Operating (Probability: {{company['likelihood']}})</td>
                     {% else %}
-                    <td class="notoperating danger">{{company['prediction']}}</td>
+                    <td class="notoperating danger">Not Likely to Remain Operating (Probability: {{1-company['likelihood']}})</td>
                     {% endif %}
-                    {% if company['prediction'] == 'Not Operating' %}
-                    <td>{{(1-company['likelihood'])}}</td>
-                    {% else %}
-                    <td>{{company['likelihood']}}</td>
-                    {% endif %}
-                    <td id="funds">{{company['totalfunds']}}</td>
+                    <td>{{company['totalfunds']}}</td>
+                    <td>{{company['market']}}</td>
                     <td>{{company['investors']}}</td>
                     <td>{{company['founders']}}</td>
                     <td>{{company['upvotes']}}</td>
-                    <td>{{company['sentiment']}}</td>
+                    <td><a href={{company['commentsurl']}}>
+                            {{company['sentiment']}}</a></td>
                 </tr>
                 {% endfor %}
-              </tr>
             </tbody>
           </table>
         </div>
@@ -365,9 +367,10 @@
             <thead>
               <tr>
                 <th>Company</th>
-                <th>Prediction</th>
-                <th>Likelihood</th>
+                <th>Status</th>
+                <th>Forecast</th>
                 <th>Funds</th>
+                <th>Market</th>
                 <th>Investors</th>
                 <th>Founders</th>
                 <th>Upvotes</th>
@@ -377,25 +380,23 @@
             <tbody>
                 {% for company in session_w12%}
                 <tr>
-                    <td><a href={{company['url']}}>{{company['company']}}</a></td>
+                    <td><a href={{company['url']}}>
+                            {{company['company']}}</a></td>
+                    <td>{{company['status']}}</td>
                     {% if company['prediction'] == 'Operating' %}
-                    <td class="operating success">{{company['prediction']}}</td>
+                    <td class="operating success">Likely to Remain Operating (Probability: {{company['likelihood']}})</td>
                     {% else %}
-                    <td class="notoperating danger">{{company['prediction']}}</td>
+                    <td class="notoperating danger">Not Likely to Remain Operating (Probability: {{1-company['likelihood']}})</td>
                     {% endif %}
-                    {% if company['prediction'] == 'Not Operating' %}
-                    <td>{{(1-company['likelihood'])}}</td>
-                    {% else %}
-                    <td>{{company['likelihood']}}</td>
-                    {% endif %}
-                    <td id="funds">{{company['totalfunds']}}</td>
+                    <td>{{company['totalfunds']}}</td>
+                    <td>{{company['market']}}</td>
                     <td>{{company['investors']}}</td>
                     <td>{{company['founders']}}</td>
                     <td>{{company['upvotes']}}</td>
-                    <td>{{company['sentiment']}}</td>
+                    <td><a href={{company['commentsurl']}}>
+                            {{company['sentiment']}}</a></td>
                 </tr>
                 {% endfor %}
-              </tr>
             </tbody>
           </table>
         </div>
@@ -404,9 +405,10 @@
             <thead>
               <tr>
                 <th>Company</th>
-                <th>Prediction</th>
-                <th>Likelihood</th>
+                <th>Status</th>
+                <th>Forecast</th>
                 <th>Funds</th>
+                <th>Market</th>
                 <th>Investors</th>
                 <th>Founders</th>
                 <th>Upvotes</th>
@@ -416,25 +418,23 @@
             <tbody>
                 {% for company in session_s11%}
                 <tr>
-                    <td><a href={{company['url']}}>{{company['company']}}</a></td>
+                    <td><a href={{company['url']}}>
+                            {{company['company']}}</a></td>
+                    <td>{{company['status']}}</td>
                     {% if company['prediction'] == 'Operating' %}
-                    <td class="operating success">{{company['prediction']}}</td>
+                    <td class="operating success">Likely to Remain Operating (Probability: {{company['likelihood']}})</td>
                     {% else %}
-                    <td class="notoperating danger">{{company['prediction']}}</td>
+                    <td class="notoperating danger">Not Likely to Remain Operating (Probability: {{1-company['likelihood']}})</td>
                     {% endif %}
-                    {% if company['prediction'] == 'Not Operating' %}
-                    <td>{{(1-company['likelihood'])}}</td>
-                    {% else %}
-                    <td>{{company['likelihood']}}</td>
-                    {% endif %}
-                    <td id="funds">{{company['totalfunds']}}</td>
+                    <td>{{company['totalfunds']}}</td>
+                    <td>{{company['market']}}</td>
                     <td>{{company['investors']}}</td>
                     <td>{{company['founders']}}</td>
                     <td>{{company['upvotes']}}</td>
-                    <td>{{company['sentiment']}}</td>
+                    <td><a href={{company['commentsurl']}}>
+                            {{company['sentiment']}}</a></td>
                 </tr>
                 {% endfor %}
-              </tr>
             </tbody>
           </table>
         </div>
@@ -443,9 +443,10 @@
             <thead>
               <tr>
                 <th>Company</th>
-                <th>Prediction</th>
-                <th>Likelihood</th>
+                <th>Status</th>
+                <th>Forecast</th>
                 <th>Funds</th>
+                <th>Market</th>
                 <th>Investors</th>
                 <th>Founders</th>
                 <th>Upvotes</th>
@@ -455,25 +456,292 @@
             <tbody>
                 {% for company in session_w11%}
                 <tr>
-                    <td><a href={{company['url']}}>{{company['company']}}</a></td>
+                    <td><a href={{company['url']}}>
+                            {{company['company']}}</a></td>
+                    <td>{{company['status']}}</td>
                     {% if company['prediction'] == 'Operating' %}
-                    <td class="operating success">{{company['prediction']}}</td>
+                    <td class="operating success">Likely to Remain Operating (Probability: {{company['likelihood']}})</td>
                     {% else %}
-                    <td class="notoperating danger">{{company['prediction']}}</td>
+                    <td class="notoperating danger">Not Likely to Remain Operating (Probability: {{1-company['likelihood']}})</td>
                     {% endif %}
-                    {% if company['prediction'] == 'Not Operating' %}
-                    <td>{{(1-company['likelihood'])}}</td>
-                    {% else %}
-                    <td>{{company['likelihood']}}</td>
-                    {% endif %}
-                    <td id="funds">{{company['totalfunds']}}</td>
+                    <td>{{company['totalfunds']}}</td>
+                    <td>{{company['market']}}</td>
                     <td>{{company['investors']}}</td>
                     <td>{{company['founders']}}</td>
                     <td>{{company['upvotes']}}</td>
-                    <td>{{company['sentiment']}}</td>
+                    <td><a href={{company['commentsurl']}}>
+                            {{company['sentiment']}}</a></td>
                 </tr>
                 {% endfor %}
+            </tbody>
+          </table>
+        </div>
+
+        <div class="tab-pane" id="S10">
+          <table id="s10table" class="table table-condensed tablesorter">
+            <thead>
+              <tr>
+                <th>Company</th>
+                <th>Status</th>
+                <th>Forecast</th>
+                <th>Funds</th>
+                <th>Market</th>
+                <th>Investors</th>
+                <th>Founders</th>
+                <th>Upvotes</th>
+                <th>Sentiment</th>
               </tr>
+            </thead>
+            <tbody>
+                {% for company in session_s10%}
+                <tr>
+                    <td><a href={{company['url']}}>
+                            {{company['company']}}</a></td>
+                    <td>{{company['status']}}</td>
+                    {% if company['prediction'] == 'Operating' %}
+                    <td class="operating success">Likely to Remain Operating (Probability: {{company['likelihood']}})</td>
+                    {% else %}
+                    <td class="notoperating danger">Not Likely to Remain Operating (Probability: {{1-company['likelihood']}})</td>
+                    {% endif %}
+                    <td>{{company['totalfunds']}}</td>
+                    <td>{{company['market']}}</td>
+                    <td>{{company['investors']}}</td>
+                    <td>{{company['founders']}}</td>
+                    <td>{{company['upvotes']}}</td>
+                    <td><a href={{company['commentsurl']}}>
+                            {{company['sentiment']}}</a></td>
+                </tr>
+                {% endfor %}
+            </tbody>
+          </table>
+        </div>
+        <div class="tab-pane" id="W10">
+          <table id="w10table" class="table table-condensed tablesorter">
+            <thead>
+              <tr>
+                <th>Company</th>
+                <th>Status</th>
+                <th>Forecast</th>
+                <th>Funds</th>
+                <th>Market</th>
+                <th>Investors</th>
+                <th>Founders</th>
+                <th>Upvotes</th>
+                <th>Sentiment</th>
+              </tr>
+            </thead>
+            <tbody>
+                {% for company in session_w10%}
+                <tr>
+                    <td><a href={{company['url']}}>
+                            {{company['company']}}</a></td>
+                    <td>{{company['status']}}</td>
+                    {% if company['prediction'] == 'Operating' %}
+                    <td class="operating success">Likely to Remain Operating (Probability: {{company['likelihood']}})</td>
+                    {% else %}
+                    <td class="notoperating danger">Not Likely to Remain Operating (Probability: {{1-company['likelihood']}})</td>
+                    {% endif %}
+                    <td>{{company['totalfunds']}}</td>
+                    <td>{{company['market']}}</td>
+                    <td>{{company['investors']}}</td>
+                    <td>{{company['founders']}}</td>
+                    <td>{{company['upvotes']}}</td>
+                    <td><a href={{company['commentsurl']}}>
+                            {{company['sentiment']}}</a></td>
+                </tr>
+                {% endfor %}
+            </tbody>
+          </table>
+        </div>
+
+        <div class="tab-pane" id="S09">
+          <table id="s09table" class="table table-condensed tablesorter">
+            <thead>
+              <tr>
+                <th>Company</th>
+                <th>Status</th>
+                <th>Forecast</th>
+                <th>Funds</th>
+                <th>Market</th>
+                <th>Investors</th>
+                <th>Founders</th>
+                <th>Upvotes</th>
+                <th>Sentiment</th>
+              </tr>
+            </thead>
+            <tbody>
+                {% for company in session_s09%}
+                <tr>
+                    <td><a href={{company['url']}}>
+                            {{company['company']}}</a></td>
+                    <td>{{company['status']}}</td>
+                    {% if company['prediction'] == 'Operating' %}
+                    <td class="operating success">Likely to Remain Operating (Probability: {{company['likelihood']}})</td>
+                    {% else %}
+                    <td class="notoperating danger">Not Likely to Remain Operating (Probability: {{1-company['likelihood']}})</td>
+                    {% endif %}
+                    <td>{{company['totalfunds']}}</td>
+                    <td>{{company['market']}}</td>
+                    <td>{{company['investors']}}</td>
+                    <td>{{company['founders']}}</td>
+                    <td>{{company['upvotes']}}</td>
+                    <td><a href={{company['commentsurl']}}>
+                            {{company['sentiment']}}</a></td>
+                </tr>
+                {% endfor %}
+            </tbody>
+          </table>
+        </div>
+        <div class="tab-pane" id="W09">
+          <table id="w09table" class="table table-condensed tablesorter">
+            <thead>
+              <tr>
+                <th>Company</th>
+                <th>Status</th>
+                <th>Forecast</th>
+                <th>Funds</th>
+                <th>Market</th>
+                <th>Investors</th>
+                <th>Founders</th>
+                <th>Upvotes</th>
+                <th>Sentiment</th>
+              </tr>
+            </thead>
+            <tbody>
+                {% for company in session_w09%}
+                <tr>
+                    <td><a href={{company['url']}}>
+                            {{company['company']}}</a></td>
+                    <td>{{company['status']}}</td>
+                    {% if company['prediction'] == 'Operating' %}
+                    <td class="operating success">Likely to Remain Operating (Probability: {{company['likelihood']}})</td>
+                    {% else %}
+                    <td class="notoperating danger">Not Likely to Remain Operating (Probability: {{1-company['likelihood']}})</td>
+                    {% endif %}
+                    <td>{{company['totalfunds']}}</td>
+                    <td>{{company['market']}}</td>
+                    <td>{{company['investors']}}</td>
+                    <td>{{company['founders']}}</td>
+                    <td>{{company['upvotes']}}</td>
+                    <td><a href={{company['commentsurl']}}>
+                            {{company['sentiment']}}</a></td>
+                </tr>
+                {% endfor %}
+            </tbody>
+          </table>
+        </div>
+        <div class="tab-pane" id="S08">
+          <table id="s08table" class="table table-condensed tablesorter">
+            <thead>
+              <tr>
+                <th>Company</th>
+                <th>Status</th>
+                <th>Forecast</th>
+                <th>Funds</th>
+                <th>Market</th>
+                <th>Investors</th>
+                <th>Founders</th>
+                <th>Upvotes</th>
+                <th>Sentiment</th>
+              </tr>
+            </thead>
+            <tbody>
+                {% for company in session_s08%}
+                <tr>
+                    <td><a href={{company['url']}}>
+                            {{company['company']}}</a></td>
+                    <td>{{company['status']}}</td>
+                    {% if company['prediction'] == 'Operating' %}
+                    <td class="operating success">Likely to Remain Operating (Probability: {{company['likelihood']}})</td>
+                    {% else %}
+                    <td class="notoperating danger">Not Likely to Remain Operating (Probability: {{1-company['likelihood']}})</td>
+                    {% endif %}
+                    <td>{{company['totalfunds']}}</td>
+                    <td>{{company['market']}}</td>
+                    <td>{{company['investors']}}</td>
+                    <td>{{company['founders']}}</td>
+                    <td>{{company['upvotes']}}</td>
+                    <td><a href={{company['commentsurl']}}>
+                            {{company['sentiment']}}</a></td>
+                </tr>
+                {% endfor %}
+            </tbody>
+          </table>
+        </div>
+        <div class="tab-pane" id="W08">
+          <table id="w08table" class="table table-condensed tablesorter">
+            <thead>
+              <tr>
+                <th>Company</th>
+                <th>Status</th>
+                <th>Forecast</th>
+                <th>Funds</th>
+                <th>Market</th>
+                <th>Investors</th>
+                <th>Founders</th>
+                <th>Upvotes</th>
+                <th>Sentiment</th>
+              </tr>
+            </thead>
+            <tbody>
+                {% for company in session_w08%}
+                <tr>
+                    <td><a href={{company['url']}}>
+                            {{company['company']}}</a></td>
+                    <td>{{company['status']}}</td>
+                    {% if company['prediction'] == 'Operating' %}
+                    <td class="operating success">Likely to Remain Operating (Probability: {{company['likelihood']}})</td>
+                    {% else %}
+                    <td class="notoperating danger">Not Likely to Remain Operating (Probability: {{1-company['likelihood']}})</td>
+                    {% endif %}
+                    <td>{{company['totalfunds']}}</td>
+                    <td>{{company['market']}}</td>
+                    <td>{{company['investors']}}</td>
+                    <td>{{company['founders']}}</td>
+                    <td>{{company['upvotes']}}</td>
+                    <td><a href={{company['commentsurl']}}>
+                            {{company['sentiment']}}</a></td>
+                </tr>
+                {% endfor %}
+            </tbody>
+          </table>
+        </div>
+
+        <div class="tab-pane" id="050607">
+          <table id="050607table" class="table table-condensed tablesorter">
+            <thead>
+              <tr>
+                <th>Company</th>
+                <th>Status</th>
+                <th>Forecast</th>
+                <th>Funds</th>
+                <th>Market</th>
+                <th>Investors</th>
+                <th>Founders</th>
+                <th>Upvotes</th>
+                <th>Sentiment</th>
+              </tr>
+            </thead>
+            <tbody>
+                {% for company in session_070605%}
+                <tr>
+                    <td><a href={{company['url']}}>
+                            {{company['company']}}</a></td>
+                    <td>{{company['status']}}</td>
+                    {% if company['prediction'] == 'Operating' %}
+                    <td class="operating success">Likely to Remain Operating (Probability: {{company['likelihood']}})</td>
+                    {% else %}
+                    <td class="notoperating danger">Not Likely to Remain Operating (Probability: {{1-company['likelihood']}})</td>
+                    {% endif %}
+                    <td>{{company['totalfunds']}}</td>
+                    <td>{{company['market']}}</td>
+                    <td>{{company['investors']}}</td>
+                    <td>{{company['founders']}}</td>
+                    <td>{{company['upvotes']}}</td>
+                    <td><a href={{company['commentsurl']}}>
+                            {{company['sentiment']}}</a></td>
+                </tr>
+                {% endfor %}
             </tbody>
           </table>
         </div>
@@ -496,7 +764,14 @@
                     $("#s12table").tablesorter();
                     $("#w12table").tablesorter();
                     $("#s11table").tablesorter();
-                    $("#w11table").tablesorter();                    
+                    $("#w11table").tablesorter();
+                    $("#s10table").tablesorter();
+                    $("#w10table").tablesorter();
+                    $("#s09table").tablesorter();
+                    $("#w09table").tablesorter();
+                    $("#s08table").tablesorter();
+                    $("#w08table").tablesorter();
+                    $("#050607table").tablesorter();
                     });
         });
         
