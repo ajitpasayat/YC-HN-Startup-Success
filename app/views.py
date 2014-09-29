@@ -3,6 +3,10 @@ from app import app
 from flask import request
 import pymysql as mdb
 
+@app.route('/ycpredictorslides')
+def slides_page():
+    return render_template('ycpredictorslides.html')
+    
 @app.route('/ycstartuppredictor')
 def startups_page_fancy():
     db = mdb.connect(user="root", host="localhost", db="startupsuccess_db", charset='utf8')
