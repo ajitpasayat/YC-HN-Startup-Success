@@ -123,20 +123,20 @@
                 </thead>
                 <tbody>
                     <tr>
-                        <td><a href={{search_results[0][8]}}>
-                                {{search_results[0][0]}}</a></td>
-                        <td>{{search_results[0][12]}}</td>
+                        <td style="vertical-align:middle"><a href={{search_results[0][8]}}><img src={{search_results[0][11]}}  
+                                alt={{search_results[0][0]}} width=98></a></td>
+                        <td style="vertical-align:middle">{{search_results[0][12]}}</td>
                         {% if search_results[0][1] == 'Operating' %}
-                        <td class="operating success">Likely to Remain Operating (Probability: {{search_results[0][2]}})</td>
+                        <td style="vertical-align:middle" class="operating success">Likely Operating ({{"{0:.0f}%".format(search_results[0][2] * 100)}} Chance)</td>
                         {% else %}
-                        <td class="notoperating danger">Not Likely to Remain Operating (Probability: {{search_results[0][2]}})</td>
+                        <td style="vertical-align:middle" class="notoperating danger">Not Likely Operating ({{"{0:.0f}%".format(search_results[0][2] * 100)}} Chance)</td>
                         {% endif %}
-                        <td id="funds">{{'${:,.2f}'.format(search_results[0][3])}}</td>
-                        <td>{{search_results[0][9]}}</td>
-                        <td>{{search_results[0][4]}}</td>
-                        <td>{{search_results[0][5]}}</td>
-                        <td>{{search_results[0][6]}}</td>
-                        <td><a href={{search_results[0][10]}}>
+                        <td style="vertical-align:middle" id="funds">{{'${:,.2f}'.format(search_results[0][3])}}</td>
+                        <td style="vertical-align:middle">{{search_results[0][9]}}</td>
+                        <td style="vertical-align:middle">{{search_results[0][4]}}</td>
+                        <td style="vertical-align:middle">{{search_results[0][5]}}</td>
+                        <td style="vertical-align:middle">{{search_results[0][6]}}</td>
+                        <td style="vertical-align:middle"><a href={{search_results[0][10]}}>
                                 {{search_results[0][7]}}</a></td>
                     </tr>
                   </tr>
@@ -187,20 +187,20 @@
             <tbody>
                 {% for company in session_s14%}
                 <tr>
-                    <td><a href={{company['url']}}>
-                            {{company['company']}}</a></td>
-                    <td>{{company['status']}}</td>
+                    <td style="vertical-align:middle"><a href={{company['url']}}><img src={{company['logo']}}
+                            alt={{company['company']}} width=98></a></td>
+                    <td style="vertical-align:middle">{{company['status']}}</td>
                     {% if company['prediction'] == 'Operating' %}
-                    <td class="operating success">Likely to Remain Operating (Probability: {{company['likelihood']}})</td>
+                    <td style="vertical-align:middle" class="operating success">Likely Operating ({{"{0:.0f}%".format(company['likelihood'] * 100)}} Chance)</td>
                     {% else %}
-                    <td class="notoperating danger">Not Likely to Remain Operating (Probability: {{1-company['likelihood']}})</td>
+                    <td style="vertical-align:middle" class="notoperating danger">Not Likely Operating ({{"{0:.0f}%".format((1-company['likelihood']) * 100)}} Chance)</td>
                     {% endif %}
-                    <td>{{company['totalfunds']}}</td>
-                    <td>{{company['market']}}</td>
-                    <td>{{company['investors']}}</td>
-                    <td>{{company['founders']}}</td>
-                    <td>{{company['upvotes']}}</td>
-                    <td><a href={{company['commentsurl']}}>
+                    <td style="vertical-align:middle">{{company['totalfunds']}}</td>
+                    <td style="vertical-align:middle">{{company['market']}}</td>
+                    <td style="vertical-align:middle">{{company['investors']}}</td>
+                    <td style="vertical-align:middle">{{company['founders']}}</td>
+                    <td style="vertical-align:middle">{{company['upvotes']}}</td>
+                    <td style="vertical-align:middle"><a href={{company['commentsurl']}}>
                             {{company['sentiment']}}</a></td>
                 </tr>
                 {% endfor %}
@@ -225,21 +225,21 @@
             </thead>
             <tbody>
                 {% for company in session_w14%}
-                <tr>
-                    <td><a href={{company['url']}}>
-                            {{company['company']}}</a></td>
-                    <td>{{company['status']}}</td>
+               <tr>
+                    <td style="vertical-align:middle"><a href={{company['url']}}><img src={{company['logo']}}
+                            alt={{company['company']}} width=98></a></td>
+                    <td style="vertical-align:middle">{{company['status']}}</td>
                     {% if company['prediction'] == 'Operating' %}
-                    <td class="operating success">Likely to Remain Operating (Probability: {{company['likelihood']}})</td>
+                    <td style="vertical-align:middle" class="operating success">Likely Operating ({{"{0:.0f}%".format(company['likelihood'] * 100)}} Chance)</td>
                     {% else %}
-                    <td class="notoperating danger">Not Likely to Remain Operating (Probability: {{1-company['likelihood']}})</td>
+                    <td style="vertical-align:middle" class="notoperating danger">Not Likely Operating ({{"{0:.0f}%".format((1-company['likelihood']) * 100)}} Chance)</td>
                     {% endif %}
-                    <td>{{company['totalfunds']}}</td>
-                    <td>{{company['market']}}</td>
-                    <td>{{company['investors']}}</td>
-                    <td>{{company['founders']}}</td>
-                    <td>{{company['upvotes']}}</td>
-                    <td><a href={{company['commentsurl']}}>
+                    <td style="vertical-align:middle">{{company['totalfunds']}}</td>
+                    <td style="vertical-align:middle">{{company['market']}}</td>
+                    <td style="vertical-align:middle">{{company['investors']}}</td>
+                    <td style="vertical-align:middle">{{company['founders']}}</td>
+                    <td style="vertical-align:middle">{{company['upvotes']}}</td>
+                    <td style="vertical-align:middle"><a href={{company['commentsurl']}}>
                             {{company['sentiment']}}</a></td>
                 </tr>
                 {% endfor %}
@@ -266,20 +266,20 @@
             <tbody>
                 {% for company in session_s13%}
                 <tr>
-                    <td><a href={{company['url']}}>
-                            {{company['company']}}</a></td>
-                    <td>{{company['status']}}</td>
+                    <td style="vertical-align:middle"><a href={{company['url']}}><img src={{company['logo']}}
+                            alt={{company['company']}} width=98></a></td>
+                    <td style="vertical-align:middle">{{company['status']}}</td>
                     {% if company['prediction'] == 'Operating' %}
-                    <td class="operating success">Likely to Remain Operating (Probability: {{company['likelihood']}})</td>
+                    <td style="vertical-align:middle" class="operating success">Likely to Remain Operating (Probability: {{company['likelihood']}})</td>
                     {% else %}
-                    <td class="notoperating danger">Not Likely to Remain Operating (Probability: {{1-company['likelihood']}})</td>
+                    <td style="vertical-align:middle" class="notoperating danger">Not Likely to Remain Operating (Probability: {{1-company['likelihood']}})</td>
                     {% endif %}
-                    <td>{{company['totalfunds']}}</td>
-                    <td>{{company['market']}}</td>
-                    <td>{{company['investors']}}</td>
-                    <td>{{company['founders']}}</td>
-                    <td>{{company['upvotes']}}</td>
-                    <td><a href={{company['commentsurl']}}>
+                    <td style="vertical-align:middle">{{company['totalfunds']}}</td>
+                    <td style="vertical-align:middle">{{company['market']}}</td>
+                    <td style="vertical-align:middle">{{company['investors']}}</td>
+                    <td style="vertical-align:middle">{{company['founders']}}</td>
+                    <td style="vertical-align:middle">{{company['upvotes']}}</td>
+                    <td style="vertical-align:middle"><a href={{company['commentsurl']}}>
                             {{company['sentiment']}}</a></td>
                 </tr>
                 {% endfor %}
@@ -304,20 +304,20 @@
             <tbody>
                 {% for company in session_w13%}
                 <tr>
-                    <td><a href={{company['url']}}>
-                            {{company['company']}}</a></td>
-                    <td>{{company['status']}}</td>
+                    <td style="vertical-align:middle"><a href={{company['url']}}><img src={{company['logo']}}
+                            alt={{company['company']}} width=98></a></td>
+                    <td style="vertical-align:middle">{{company['status']}}</td>
                     {% if company['prediction'] == 'Operating' %}
-                    <td class="operating success">Likely to Remain Operating (Probability: {{company['likelihood']}})</td>
+                    <td style="vertical-align:middle" class="operating success">Likely to Remain Operating (Probability: {{company['likelihood']}})</td>
                     {% else %}
-                    <td class="notoperating danger">Not Likely to Remain Operating (Probability: {{1-company['likelihood']}})</td>
+                    <td style="vertical-align:middle" class="notoperating danger">Not Likely to Remain Operating (Probability: {{1-company['likelihood']}})</td>
                     {% endif %}
-                    <td>{{company['totalfunds']}}</td>
-                    <td>{{company['market']}}</td>
-                    <td>{{company['investors']}}</td>
-                    <td>{{company['founders']}}</td>
-                    <td>{{company['upvotes']}}</td>
-                    <td><a href={{company['commentsurl']}}>
+                    <td style="vertical-align:middle">{{company['totalfunds']}}</td>
+                    <td style="vertical-align:middle">{{company['market']}}</td>
+                    <td style="vertical-align:middle">{{company['investors']}}</td>
+                    <td style="vertical-align:middle">{{company['founders']}}</td>
+                    <td style="vertical-align:middle">{{company['upvotes']}}</td>
+                    <td style="vertical-align:middle"><a href={{company['commentsurl']}}>
                             {{company['sentiment']}}</a></td>
                 </tr>
                 {% endfor %}
@@ -342,20 +342,20 @@
             <tbody>
                 {% for company in session_s12%}
                 <tr>
-                    <td><a href={{company['url']}}>
-                            {{company['company']}}</a></td>
-                    <td>{{company['status']}}</td>
+                    <td style="vertical-align:middle"><a href={{company['url']}}><img src={{company['logo']}}
+                            alt={{company['company']}} width=98></a></td>
+                    <td style="vertical-align:middle">{{company['status']}}</td>
                     {% if company['prediction'] == 'Operating' %}
-                    <td class="operating success">Likely to Remain Operating (Probability: {{company['likelihood']}})</td>
+                    <td style="vertical-align:middle" class="operating success">Likely to Remain Operating (Probability: {{company['likelihood']}})</td>
                     {% else %}
-                    <td class="notoperating danger">Not Likely to Remain Operating (Probability: {{1-company['likelihood']}})</td>
+                    <td style="vertical-align:middle" class="notoperating danger">Not Likely to Remain Operating (Probability: {{1-company['likelihood']}})</td>
                     {% endif %}
-                    <td>{{company['totalfunds']}}</td>
-                    <td>{{company['market']}}</td>
-                    <td>{{company['investors']}}</td>
-                    <td>{{company['founders']}}</td>
-                    <td>{{company['upvotes']}}</td>
-                    <td><a href={{company['commentsurl']}}>
+                    <td style="vertical-align:middle">{{company['totalfunds']}}</td>
+                    <td style="vertical-align:middle">{{company['market']}}</td>
+                    <td style="vertical-align:middle">{{company['investors']}}</td>
+                    <td style="vertical-align:middle">{{company['founders']}}</td>
+                    <td style="vertical-align:middle">{{company['upvotes']}}</td>
+                    <td style="vertical-align:middle"><a href={{company['commentsurl']}}>
                             {{company['sentiment']}}</a></td>
                 </tr>
                 {% endfor %}
@@ -380,20 +380,20 @@
             <tbody>
                 {% for company in session_w12%}
                 <tr>
-                    <td><a href={{company['url']}}>
-                            {{company['company']}}</a></td>
-                    <td>{{company['status']}}</td>
+                    <td style="vertical-align:middle"><a href={{company['url']}}><img src={{company['logo']}}
+                            alt={{company['company']}} width=98></a></td>
+                    <td style="vertical-align:middle">{{company['status']}}</td>
                     {% if company['prediction'] == 'Operating' %}
-                    <td class="operating success">Likely to Remain Operating (Probability: {{company['likelihood']}})</td>
+                    <td style="vertical-align:middle" class="operating success">Likely to Remain Operating (Probability: {{company['likelihood']}})</td>
                     {% else %}
-                    <td class="notoperating danger">Not Likely to Remain Operating (Probability: {{1-company['likelihood']}})</td>
+                    <td style="vertical-align:middle" class="notoperating danger">Not Likely to Remain Operating (Probability: {{1-company['likelihood']}})</td>
                     {% endif %}
-                    <td>{{company['totalfunds']}}</td>
-                    <td>{{company['market']}}</td>
-                    <td>{{company['investors']}}</td>
-                    <td>{{company['founders']}}</td>
-                    <td>{{company['upvotes']}}</td>
-                    <td><a href={{company['commentsurl']}}>
+                    <td style="vertical-align:middle">{{company['totalfunds']}}</td>
+                    <td style="vertical-align:middle">{{company['market']}}</td>
+                    <td style="vertical-align:middle">{{company['investors']}}</td>
+                    <td style="vertical-align:middle">{{company['founders']}}</td>
+                    <td style="vertical-align:middle">{{company['upvotes']}}</td>
+                    <td style="vertical-align:middle"><a href={{company['commentsurl']}}>
                             {{company['sentiment']}}</a></td>
                 </tr>
                 {% endfor %}
@@ -418,20 +418,20 @@
             <tbody>
                 {% for company in session_s11%}
                 <tr>
-                    <td><a href={{company['url']}}>
-                            {{company['company']}}</a></td>
-                    <td>{{company['status']}}</td>
+                    <td style="vertical-align:middle"><a href={{company['url']}}><img src={{company['logo']}}
+                            alt={{company['company']}} width=98></a></td>
+                    <td style="vertical-align:middle">{{company['status']}}</td>
                     {% if company['prediction'] == 'Operating' %}
-                    <td class="operating success">Likely to Remain Operating (Probability: {{company['likelihood']}})</td>
+                    <td style="vertical-align:middle" class="operating success">Likely to Remain Operating (Probability: {{company['likelihood']}})</td>
                     {% else %}
-                    <td class="notoperating danger">Not Likely to Remain Operating (Probability: {{1-company['likelihood']}})</td>
+                    <td style="vertical-align:middle" class="notoperating danger">Not Likely to Remain Operating (Probability: {{1-company['likelihood']}})</td>
                     {% endif %}
-                    <td>{{company['totalfunds']}}</td>
-                    <td>{{company['market']}}</td>
-                    <td>{{company['investors']}}</td>
-                    <td>{{company['founders']}}</td>
-                    <td>{{company['upvotes']}}</td>
-                    <td><a href={{company['commentsurl']}}>
+                    <td style="vertical-align:middle">{{company['totalfunds']}}</td>
+                    <td style="vertical-align:middle">{{company['market']}}</td>
+                    <td style="vertical-align:middle">{{company['investors']}}</td>
+                    <td style="vertical-align:middle">{{company['founders']}}</td>
+                    <td style="vertical-align:middle">{{company['upvotes']}}</td>
+                    <td style="vertical-align:middle"><a href={{company['commentsurl']}}>
                             {{company['sentiment']}}</a></td>
                 </tr>
                 {% endfor %}
@@ -456,20 +456,20 @@
             <tbody>
                 {% for company in session_w11%}
                 <tr>
-                    <td><a href={{company['url']}}>
-                            {{company['company']}}</a></td>
-                    <td>{{company['status']}}</td>
+                    <td style="vertical-align:middle"><a href={{company['url']}}><img src={{company['logo']}}
+                            alt={{company['company']}} width=98></a></td>
+                    <td style="vertical-align:middle">{{company['status']}}</td>
                     {% if company['prediction'] == 'Operating' %}
-                    <td class="operating success">Likely to Remain Operating (Probability: {{company['likelihood']}})</td>
+                    <td style="vertical-align:middle" class="operating success">Likely to Remain Operating (Probability: {{company['likelihood']}})</td>
                     {% else %}
-                    <td class="notoperating danger">Not Likely to Remain Operating (Probability: {{1-company['likelihood']}})</td>
+                    <td style="vertical-align:middle" class="notoperating danger">Not Likely to Remain Operating (Probability: {{1-company['likelihood']}})</td>
                     {% endif %}
-                    <td>{{company['totalfunds']}}</td>
-                    <td>{{company['market']}}</td>
-                    <td>{{company['investors']}}</td>
-                    <td>{{company['founders']}}</td>
-                    <td>{{company['upvotes']}}</td>
-                    <td><a href={{company['commentsurl']}}>
+                    <td style="vertical-align:middle">{{company['totalfunds']}}</td>
+                    <td style="vertical-align:middle">{{company['market']}}</td>
+                    <td style="vertical-align:middle">{{company['investors']}}</td>
+                    <td style="vertical-align:middle">{{company['founders']}}</td>
+                    <td style="vertical-align:middle">{{company['upvotes']}}</td>
+                    <td style="vertical-align:middle"><a href={{company['commentsurl']}}>
                             {{company['sentiment']}}</a></td>
                 </tr>
                 {% endfor %}
@@ -495,20 +495,20 @@
             <tbody>
                 {% for company in session_s10%}
                 <tr>
-                    <td><a href={{company['url']}}>
-                            {{company['company']}}</a></td>
-                    <td>{{company['status']}}</td>
+                    <td style="vertical-align:middle"><a href={{company['url']}}><img src={{company['logo']}}
+                            alt={{company['company']}} width=98></a></td>
+                    <td style="vertical-align:middle">{{company['status']}}</td>
                     {% if company['prediction'] == 'Operating' %}
-                    <td class="operating success">Likely to Remain Operating (Probability: {{company['likelihood']}})</td>
+                    <td style="vertical-align:middle" class="operating success">Likely to Remain Operating (Probability: {{company['likelihood']}})</td>
                     {% else %}
-                    <td class="notoperating danger">Not Likely to Remain Operating (Probability: {{1-company['likelihood']}})</td>
+                    <td style="vertical-align:middle" class="notoperating danger">Not Likely to Remain Operating (Probability: {{1-company['likelihood']}})</td>
                     {% endif %}
-                    <td>{{company['totalfunds']}}</td>
-                    <td>{{company['market']}}</td>
-                    <td>{{company['investors']}}</td>
-                    <td>{{company['founders']}}</td>
-                    <td>{{company['upvotes']}}</td>
-                    <td><a href={{company['commentsurl']}}>
+                    <td style="vertical-align:middle">{{company['totalfunds']}}</td>
+                    <td style="vertical-align:middle">{{company['market']}}</td>
+                    <td style="vertical-align:middle">{{company['investors']}}</td>
+                    <td style="vertical-align:middle">{{company['founders']}}</td>
+                    <td style="vertical-align:middle">{{company['upvotes']}}</td>
+                    <td style="vertical-align:middle"><a href={{company['commentsurl']}}>
                             {{company['sentiment']}}</a></td>
                 </tr>
                 {% endfor %}
@@ -533,20 +533,20 @@
             <tbody>
                 {% for company in session_w10%}
                 <tr>
-                    <td><a href={{company['url']}}>
-                            {{company['company']}}</a></td>
-                    <td>{{company['status']}}</td>
+                    <td style="vertical-align:middle"><a href={{company['url']}}><img src={{company['logo']}}
+                            alt={{company['company']}} width=98></a></td>
+                    <td style="vertical-align:middle">{{company['status']}}</td>
                     {% if company['prediction'] == 'Operating' %}
-                    <td class="operating success">Likely to Remain Operating (Probability: {{company['likelihood']}})</td>
+                    <td style="vertical-align:middle" class="operating success">Likely to Remain Operating (Probability: {{company['likelihood']}})</td>
                     {% else %}
-                    <td class="notoperating danger">Not Likely to Remain Operating (Probability: {{1-company['likelihood']}})</td>
+                    <td style="vertical-align:middle" class="notoperating danger">Not Likely to Remain Operating (Probability: {{1-company['likelihood']}})</td>
                     {% endif %}
-                    <td>{{company['totalfunds']}}</td>
-                    <td>{{company['market']}}</td>
-                    <td>{{company['investors']}}</td>
-                    <td>{{company['founders']}}</td>
-                    <td>{{company['upvotes']}}</td>
-                    <td><a href={{company['commentsurl']}}>
+                    <td style="vertical-align:middle">{{company['totalfunds']}}</td>
+                    <td style="vertical-align:middle">{{company['market']}}</td>
+                    <td style="vertical-align:middle">{{company['investors']}}</td>
+                    <td style="vertical-align:middle">{{company['founders']}}</td>
+                    <td style="vertical-align:middle">{{company['upvotes']}}</td>
+                    <td style="vertical-align:middle"><a href={{company['commentsurl']}}>
                             {{company['sentiment']}}</a></td>
                 </tr>
                 {% endfor %}
@@ -572,20 +572,20 @@
             <tbody>
                 {% for company in session_s09%}
                 <tr>
-                    <td><a href={{company['url']}}>
-                            {{company['company']}}</a></td>
-                    <td>{{company['status']}}</td>
+                    <td style="vertical-align:middle"><a href={{company['url']}}><img src={{company['logo']}}
+                            alt={{company['company']}} width=98></a></td>
+                    <td style="vertical-align:middle">{{company['status']}}</td>
                     {% if company['prediction'] == 'Operating' %}
-                    <td class="operating success">Likely to Remain Operating (Probability: {{company['likelihood']}})</td>
+                    <td style="vertical-align:middle" class="operating success">Likely to Remain Operating (Probability: {{company['likelihood']}})</td>
                     {% else %}
-                    <td class="notoperating danger">Not Likely to Remain Operating (Probability: {{1-company['likelihood']}})</td>
+                    <td style="vertical-align:middle" class="notoperating danger">Not Likely to Remain Operating (Probability: {{1-company['likelihood']}})</td>
                     {% endif %}
-                    <td>{{company['totalfunds']}}</td>
-                    <td>{{company['market']}}</td>
-                    <td>{{company['investors']}}</td>
-                    <td>{{company['founders']}}</td>
-                    <td>{{company['upvotes']}}</td>
-                    <td><a href={{company['commentsurl']}}>
+                    <td style="vertical-align:middle">{{company['totalfunds']}}</td>
+                    <td style="vertical-align:middle">{{company['market']}}</td>
+                    <td style="vertical-align:middle">{{company['investors']}}</td>
+                    <td style="vertical-align:middle">{{company['founders']}}</td>
+                    <td style="vertical-align:middle">{{company['upvotes']}}</td>
+                    <td style="vertical-align:middle"><a href={{company['commentsurl']}}>
                             {{company['sentiment']}}</a></td>
                 </tr>
                 {% endfor %}
@@ -610,20 +610,20 @@
             <tbody>
                 {% for company in session_w09%}
                 <tr>
-                    <td><a href={{company['url']}}>
-                            {{company['company']}}</a></td>
-                    <td>{{company['status']}}</td>
+                    <td style="vertical-align:middle"><a href={{company['url']}}><img src={{company['logo']}}
+                            alt={{company['company']}} width=98></a></td>
+                    <td style="vertical-align:middle">{{company['status']}}</td>
                     {% if company['prediction'] == 'Operating' %}
-                    <td class="operating success">Likely to Remain Operating (Probability: {{company['likelihood']}})</td>
+                    <td style="vertical-align:middle" class="operating success">Likely to Remain Operating (Probability: {{company['likelihood']}})</td>
                     {% else %}
-                    <td class="notoperating danger">Not Likely to Remain Operating (Probability: {{1-company['likelihood']}})</td>
+                    <td style="vertical-align:middle" class="notoperating danger">Not Likely to Remain Operating (Probability: {{1-company['likelihood']}})</td>
                     {% endif %}
-                    <td>{{company['totalfunds']}}</td>
-                    <td>{{company['market']}}</td>
-                    <td>{{company['investors']}}</td>
-                    <td>{{company['founders']}}</td>
-                    <td>{{company['upvotes']}}</td>
-                    <td><a href={{company['commentsurl']}}>
+                    <td style="vertical-align:middle">{{company['totalfunds']}}</td>
+                    <td style="vertical-align:middle">{{company['market']}}</td>
+                    <td style="vertical-align:middle">{{company['investors']}}</td>
+                    <td style="vertical-align:middle">{{company['founders']}}</td>
+                    <td style="vertical-align:middle">{{company['upvotes']}}</td>
+                    <td style="vertical-align:middle"><a href={{company['commentsurl']}}>
                             {{company['sentiment']}}</a></td>
                 </tr>
                 {% endfor %}
@@ -648,20 +648,20 @@
             <tbody>
                 {% for company in session_s08%}
                 <tr>
-                    <td><a href={{company['url']}}>
-                            {{company['company']}}</a></td>
-                    <td>{{company['status']}}</td>
+                    <td style="vertical-align:middle"><a href={{company['url']}}><img src={{company['logo']}}
+                            alt={{company['company']}} width=98></a></td>
+                    <td style="vertical-align:middle">{{company['status']}}</td>
                     {% if company['prediction'] == 'Operating' %}
-                    <td class="operating success">Likely to Remain Operating (Probability: {{company['likelihood']}})</td>
+                    <td style="vertical-align:middle" class="operating success">Likely to Remain Operating (Probability: {{company['likelihood']}})</td>
                     {% else %}
-                    <td class="notoperating danger">Not Likely to Remain Operating (Probability: {{1-company['likelihood']}})</td>
+                    <td style="vertical-align:middle" class="notoperating danger">Not Likely to Remain Operating (Probability: {{1-company['likelihood']}})</td>
                     {% endif %}
-                    <td>{{company['totalfunds']}}</td>
-                    <td>{{company['market']}}</td>
-                    <td>{{company['investors']}}</td>
-                    <td>{{company['founders']}}</td>
-                    <td>{{company['upvotes']}}</td>
-                    <td><a href={{company['commentsurl']}}>
+                    <td style="vertical-align:middle">{{company['totalfunds']}}</td>
+                    <td style="vertical-align:middle">{{company['market']}}</td>
+                    <td style="vertical-align:middle">{{company['investors']}}</td>
+                    <td style="vertical-align:middle">{{company['founders']}}</td>
+                    <td style="vertical-align:middle">{{company['upvotes']}}</td>
+                    <td style="vertical-align:middle"><a href={{company['commentsurl']}}>
                             {{company['sentiment']}}</a></td>
                 </tr>
                 {% endfor %}
@@ -686,20 +686,20 @@
             <tbody>
                 {% for company in session_w08%}
                 <tr>
-                    <td><a href={{company['url']}}>
-                            {{company['company']}}</a></td>
-                    <td>{{company['status']}}</td>
+                    <td style="vertical-align:middle"><a href={{company['url']}}><img src={{company['logo']}}
+                            alt={{company['company']}} width=98></a></td>
+                    <td style="vertical-align:middle">{{company['status']}}</td>
                     {% if company['prediction'] == 'Operating' %}
-                    <td class="operating success">Likely to Remain Operating (Probability: {{company['likelihood']}})</td>
+                    <td style="vertical-align:middle" class="operating success">Likely to Remain Operating (Probability: {{company['likelihood']}})</td>
                     {% else %}
-                    <td class="notoperating danger">Not Likely to Remain Operating (Probability: {{1-company['likelihood']}})</td>
+                    <td style="vertical-align:middle" class="notoperating danger">Not Likely to Remain Operating (Probability: {{1-company['likelihood']}})</td>
                     {% endif %}
-                    <td>{{company['totalfunds']}}</td>
-                    <td>{{company['market']}}</td>
-                    <td>{{company['investors']}}</td>
-                    <td>{{company['founders']}}</td>
-                    <td>{{company['upvotes']}}</td>
-                    <td><a href={{company['commentsurl']}}>
+                    <td style="vertical-align:middle">{{company['totalfunds']}}</td>
+                    <td style="vertical-align:middle">{{company['market']}}</td>
+                    <td style="vertical-align:middle">{{company['investors']}}</td>
+                    <td style="vertical-align:middle">{{company['founders']}}</td>
+                    <td style="vertical-align:middle">{{company['upvotes']}}</td>
+                    <td style="vertical-align:middle"><a href={{company['commentsurl']}}>
                             {{company['sentiment']}}</a></td>
                 </tr>
                 {% endfor %}
@@ -725,20 +725,20 @@
             <tbody>
                 {% for company in session_070605%}
                 <tr>
-                    <td><a href={{company['url']}}>
-                            {{company['company']}}</a></td>
-                    <td>{{company['status']}}</td>
+                    <td style="vertical-align:middle"><a href={{company['url']}}><img src={{company['logo']}}
+                            alt={{company['company']}} width=98></a></td>
+                    <td style="vertical-align:middle">{{company['status']}}</td>
                     {% if company['prediction'] == 'Operating' %}
-                    <td class="operating success">Likely to Remain Operating (Probability: {{company['likelihood']}})</td>
+                    <td style="vertical-align:middle" class="operating success">Likely to Remain Operating (Probability: {{company['likelihood']}})</td>
                     {% else %}
-                    <td class="notoperating danger">Not Likely to Remain Operating (Probability: {{1-company['likelihood']}})</td>
+                    <td style="vertical-align:middle" class="notoperating danger">Not Likely to Remain Operating (Probability: {{1-company['likelihood']}})</td>
                     {% endif %}
-                    <td>{{company['totalfunds']}}</td>
-                    <td>{{company['market']}}</td>
-                    <td>{{company['investors']}}</td>
-                    <td>{{company['founders']}}</td>
-                    <td>{{company['upvotes']}}</td>
-                    <td><a href={{company['commentsurl']}}>
+                    <td style="vertical-align:middle">{{company['totalfunds']}}</td>
+                    <td style="vertical-align:middle">{{company['market']}}</td>
+                    <td style="vertical-align:middle">{{company['investors']}}</td>
+                    <td style="vertical-align:middle">{{company['founders']}}</td>
+                    <td style="vertical-align:middle">{{company['upvotes']}}</td>
+                    <td style="vertical-align:middle"><a href={{company['commentsurl']}}>
                             {{company['sentiment']}}</a></td>
                 </tr>
                 {% endfor %}
